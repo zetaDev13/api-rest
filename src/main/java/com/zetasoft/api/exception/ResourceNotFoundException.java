@@ -1,4 +1,4 @@
-package com.tuempresa.api.exception;
+package com.zetasoft.api.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

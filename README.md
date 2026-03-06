@@ -1,4 +1,4 @@
-# API REST - Spring Boot
+# ZetaSoft API
 
 Modern REST API built with Spring Boot 3.4 and Java 21.
 
@@ -10,6 +10,7 @@ Modern REST API built with Spring Boot 3.4 and Java 21.
 - **Exception Handling**: Global exception handler with consistent error responses
 - **Database**: H2 in-memory (easily switchable to Oracle, PostgreSQL, MySQL)
 - **Testing**: Unit tests and integration tests
+- **API Documentation**: Swagger UI for interactive API testing
 
 ## Quick Start
 
@@ -24,6 +25,18 @@ mvn spring-boot:run
 ```
 
 The API will be available at `http://localhost:8080`
+
+### API Documentation (Swagger UI)
+
+Access the interactive API documentation at:
+- **Swagger UI**: http://localhost:8080/swagger-ui.html
+- **OpenAPI JSON**: http://localhost:8080/api-docs
+
+From Swagger UI you can:
+- View all available endpoints
+- Test API calls directly from the browser
+- See request/response schemas
+- Execute POST, PUT, DELETE operations interactively
 
 ### H2 Console
 Access the H2 console at `http://localhost:8080/h2-console`
@@ -70,6 +83,7 @@ mvn test
 - Lombok
 - MapStruct
 - JUnit 5
+- SpringDoc OpenAPI
 
 ## License
 

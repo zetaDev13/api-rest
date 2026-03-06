@@ -1,12 +1,12 @@
-package com.tuempresa.api.service;
+package com.zetasoft.api.service;
 
-import com.tuempresa.api.exception.ConflictException;
-import com.tuempresa.api.exception.ResourceNotFoundException;
-import com.tuempresa.api.mapper.UserMapper;
-import com.tuempresa.api.model.dto.UserRequest;
-import com.tuempresa.api.model.dto.UserResponse;
-import com.tuempresa.api.model.entity.User;
-import com.tuempresa.api.repository.UserRepository;
+import com.zetasoft.api.exception.ConflictException;
+import com.zetasoft.api.exception.ResourceNotFoundException;
+import com.zetasoft.api.mapper.UserMapper;
+import com.zetasoft.api.model.dto.UserRequest;
+import com.zetasoft.api.model.dto.UserResponse;
+import com.zetasoft.api.model.entity.User;
+import com.zetasoft.api.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

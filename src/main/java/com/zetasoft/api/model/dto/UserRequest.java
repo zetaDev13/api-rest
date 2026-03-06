@@ -1,4 +1,4 @@
-package com.tuempresa.api.model.dto;
+package com.zetasoft.api.model.dto;
 
 import jakarta.validation.constraints.*;
 import lombok.*;

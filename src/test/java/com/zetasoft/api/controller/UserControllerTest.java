@@ -1,9 +1,9 @@
-package com.tuempresa.api.controller;
+package com.zetasoft.api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.tuempresa.api.model.dto.UserRequest;
-import com.tuempresa.api.model.entity.User;
-import com.tuempresa.api.repository.UserRepository;
+import com.zetasoft.api.model.dto.UserRequest;
+import com.zetasoft.api.model.entity.User;
+import com.zetasoft.api.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

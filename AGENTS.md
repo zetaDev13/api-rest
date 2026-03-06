@@ -1,7 +1,7 @@
-# API REST - Spring Boot Project
+# API REST - ZetaSoft API
 
 ## Project Overview
-- **Project name**: api-rest
+- **Project name**: zetasoft-api
 - **Framework**: Spring Boot 3.4.1 with Java 21
 - **Architecture**: Layered Architecture (Controller -> Service -> Repository)
 - **Database**: H2 (development), compatible with any JPA database (Oracle, PostgreSQL, MySQL)
@@ -15,10 +15,11 @@
 - MapStruct for DTO mapping
 - Lombok
 - JUnit 5 + Mockito (Testing)
+- SpringDoc OpenAPI (Swagger UI)
 
 ## Package Structure
 ```
-com.tuempresa.api/
+com.zetasoft.api/
 ├── controller/      # REST endpoints
 ├── service/         # Business logic
 ├── repository/      # Data access (Spring Data JPA)
@@ -28,8 +29,12 @@ com.tuempresa.api/
 ├── mapper/          # MapStruct mappers
 ├── exception/       # Custom exceptions + GlobalExceptionHandler
 ├── config/          # Configuration classes
-└── security/       # Security configuration
+└── security/        # Security configuration
 ```
+
+## API Documentation
+- **Swagger UI**: http://localhost:8080/swagger-ui.html
+- **OpenAPI JSON**: http://localhost:8080/api-docs
 
 ## Coding Conventions
 1. **DTOs**: Separate Request/Response objects, never expose entities directly

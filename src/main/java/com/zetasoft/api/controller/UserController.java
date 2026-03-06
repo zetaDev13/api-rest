@@ -1,8 +1,8 @@
-package com.tuempresa.api.controller;
+package com.zetasoft.api.controller;
 
-import com.tuempresa.api.model.dto.UserRequest;
-import com.tuempresa.api.model.dto.UserResponse;
-import com.tuempresa.api.service.UserService;
+import com.zetasoft.api.model.dto.UserRequest;
+import com.zetasoft.api.model.dto.UserResponse;
+import com.zetasoft.api.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

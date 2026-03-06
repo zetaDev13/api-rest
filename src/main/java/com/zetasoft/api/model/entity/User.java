@@ -1,4 +1,4 @@
-package com.tuempresa.api.model.entity;
+package com.zetasoft.api.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

@@ -1,8 +1,8 @@
-package com.tuempresa.api.mapper;
+package com.zetasoft.api.mapper;
 
-import com.tuempresa.api.model.dto.UserRequest;
-import com.tuempresa.api.model.dto.UserResponse;
-import com.tuempresa.api.model.entity.User;
+import com.zetasoft.api.model.dto.UserRequest;
+import com.zetasoft.api.model.dto.UserResponse;
+import com.zetasoft.api.model.entity.User;
 import org.mapstruct.*;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)

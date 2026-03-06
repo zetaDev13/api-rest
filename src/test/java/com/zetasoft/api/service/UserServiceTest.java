@@ -106,8 +106,8 @@ class UserServiceTest {
 
         assertThatThrownBy(() -> userService.findById(99L))
                 .isInstanceOf(ResourceNotFoundException.class)
-                .hasMessageContaining("User not found with99'");
-    id: ' }
+                .hasMessageContaining("User not found with id: '99'");
+    }
 
     @Test
     @DisplayName("Should create new user")
@@ -139,8 +139,6 @@ class UserServiceTest {
     @DisplayName("Should update existing user")
     void update_ShouldUpdateUser() {
         when(userRepository.findById(1L)).thenReturn(Optional.of(testUser));
-        when(userRepository.existsByUsername(testRequest.getUsername())).thenReturn(false);
-        when(userRepository.existsByEmail(testRequest.getEmail())).thenReturn(false);
         when(userRepository.save(any(User.class))).thenReturn(testUser);
         when(userMapper.toResponse(any(User.class))).thenReturn(testResponse);
 

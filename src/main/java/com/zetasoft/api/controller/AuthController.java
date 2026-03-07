@@ -2,7 +2,10 @@ package com.zetasoft.api.controller;
 
 import com.zetasoft.api.model.dto.LoginRequest;
 import com.zetasoft.api.model.dto.LoginResponse;
+import com.zetasoft.api.model.dto.PasswordResetConfirmRequest;
+import com.zetasoft.api.model.dto.PasswordResetRequest;
 import com.zetasoft.api.security.JwtHelper;
+import com.zetasoft.api.service.PasswordResetService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -29,6 +32,7 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final JwtHelper jwtHelper;
     private final UserDetailsService userDetailsService;
+    private final PasswordResetService passwordResetService;
 
     @Operation(summary = "User login", description = "Authenticate user and obtain JWT token")
     @ApiResponses({
@@ -52,5 +56,28 @@ public class AuthController {
                 .build();
 
         return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @Operation(summary = "Request password reset", description = "Request a password reset email")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Password reset email sent"),
+            @ApiResponse(responseCode = "404", description = "User not found", content = @Content)
+    })
+    @PostMapping("/password-reset")
+    public ResponseEntity<Void> requestPasswordReset(@Valid @RequestBody PasswordResetRequest request) {
+        passwordResetService.requestReset(request.getEmail());
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @Operation(summary = "Confirm password reset", description = "Reset password using token")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Password reset successful"),
+            @ApiResponse(responseCode = "400", description = "Invalid or expired token", content = @Content),
+            @ApiResponse(responseCode = "404", description = "User not found", content = @Content)
+    })
+    @PostMapping("/password-reset/confirm")
+    public ResponseEntity<Void> confirmPasswordReset(@Valid @RequestBody PasswordResetConfirmRequest request) {
+        passwordResetService.confirmReset(request.getToken(), request.getNewPassword());
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

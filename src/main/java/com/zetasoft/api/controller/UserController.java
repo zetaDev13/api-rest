@@ -13,6 +13,9 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +36,15 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<UserResponse>> getAllUsers() {
         List<UserResponse> users = userService.findAll();
+        return ResponseEntity.ok(users);
+    }
+
+    @Operation(summary = "Get users paginated", description = "Returns users in pages")
+    @ApiResponse(responseCode = "200", description = "Page of users retrieved successfully")
+    @GetMapping("/paginated")
+    public ResponseEntity<Page<UserResponse>> getUsersPaginated(
+            @PageableDefault(size = 10, sort = "id") Pageable pageable) {
+        Page<UserResponse> users = userService.findAllPaginated(pageable);
         return ResponseEntity.ok(users);
     }
 

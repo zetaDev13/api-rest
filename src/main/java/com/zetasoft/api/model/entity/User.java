@@ -32,6 +32,9 @@ public class User {
     @Column(nullable = false)
     private Boolean active;
 
+    @Column(name = "email_verified", nullable = false)
+    private Boolean emailVerified;
+
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
@@ -44,6 +47,9 @@ public class User {
         updatedAt = LocalDateTime.now();
         if (active == null) {
             active = true;
+        }
+        if (emailVerified == null) {
+            emailVerified = false;
         }
     }
 

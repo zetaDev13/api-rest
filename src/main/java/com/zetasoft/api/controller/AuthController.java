@@ -4,8 +4,11 @@ import com.zetasoft.api.model.dto.LoginRequest;
 import com.zetasoft.api.model.dto.LoginResponse;
 import com.zetasoft.api.model.dto.PasswordResetConfirmRequest;
 import com.zetasoft.api.model.dto.PasswordResetRequest;
+import com.zetasoft.api.model.dto.EmailVerificationRequest;
+import com.zetasoft.api.model.dto.EmailVerificationConfirmRequest;
 import com.zetasoft.api.security.JwtHelper;
 import com.zetasoft.api.service.PasswordResetService;
+import com.zetasoft.api.service.EmailVerificationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -33,6 +36,7 @@ public class AuthController {
     private final JwtHelper jwtHelper;
     private final UserDetailsService userDetailsService;
     private final PasswordResetService passwordResetService;
+    private final EmailVerificationService emailVerificationService;
 
     @Operation(summary = "User login", description = "Authenticate user and obtain JWT token")
     @ApiResponses({
@@ -78,6 +82,30 @@ public class AuthController {
     @PostMapping("/password-reset/confirm")
     public ResponseEntity<Void> confirmPasswordReset(@Valid @RequestBody PasswordResetConfirmRequest request) {
         passwordResetService.confirmReset(request.getToken(), request.getNewPassword());
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @Operation(summary = "Request email verification", description = "Request an email verification token")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Verification email sent"),
+            @ApiResponse(responseCode = "400", description = "Email already verified", content = @Content),
+            @ApiResponse(responseCode = "404", description = "User not found", content = @Content)
+    })
+    @PostMapping("/email-verification")
+    public ResponseEntity<Void> requestEmailVerification(@Valid @RequestBody EmailVerificationRequest request) {
+        emailVerificationService.requestVerification(request.getEmail());
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @Operation(summary = "Confirm email verification", description = "Verify email using token")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Email verified successfully"),
+            @ApiResponse(responseCode = "400", description = "Invalid or expired token", content = @Content),
+            @ApiResponse(responseCode = "404", description = "User not found", content = @Content)
+    })
+    @PostMapping("/email-verification/confirm")
+    public ResponseEntity<Void> confirmEmailVerification(@Valid @RequestBody EmailVerificationConfirmRequest request) {
+        emailVerificationService.confirmVerification(request.getToken());
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

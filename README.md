@@ -29,12 +29,23 @@ The API will be available at `http://localhost:8080`
 
 ### Authentication
 
-Default credentials (for testing):
+**Default user** (for testing - you can create more via registration):
 - **Username**: `admin`
 - **Password**: `admin123`
 
-To access protected endpoints, first obtain a JWT token:
+**User Registration** (public endpoint - no token required):
+```bash
+curl -X POST http://localhost:8080/api/v1/users \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "newuser",
+    "email": "newuser@example.com",
+    "password": "password123",
+    "name": "New User"
+  }'
+```
 
+**Login** (obtain JWT token):
 ```bash
 curl -X POST http://localhost:8080/api/v1/auth/login \
   -H "Content-Type: application/json" \

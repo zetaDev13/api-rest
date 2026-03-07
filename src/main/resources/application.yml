@@ -21,6 +21,15 @@ spring:
       hibernate:
         format_sql: true
     open-in-view: false
+  security:
+    user:
+      name: admin
+      password: admin123
+
+# JWT Configuration
+jwt:
+  secret: zetasoft-api-secret-key-must-be-at-least-256-bits-long-for-hs256
+  expiration: 86400000
 
 # OpenAPI Configuration
 springdoc:
